@@ -14,7 +14,7 @@ git clone https://github.com/devsheharyar/fastAPI_CURD.git
 Navigate to the CRUD Operation With SQLAlchemy directory:
 
 ```bash
-cd FastAPI-Projects/CRUD\ Operation\ With\ SQLAlchemy
+cd "CRUD Operation With SQLAlchemy"
 ```
 
 

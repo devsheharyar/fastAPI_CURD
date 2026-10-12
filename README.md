@@ -1,5 +1,5 @@
 # FastAPI CRUD Operations with SQLAlchemy
-This repository contains a FastAPI application for performing CRUD (Create, Read, Update, Delete) operations using SQLAlchemy as the ORM (Object-Relational Mapping) tool. It provides endpoints to interact with a database, allowing users to create, retrieve, update, and delete records.
+This repository contains a FastAPI application for performing CRUD operations using SQLAlchemy.
 
 ## Features
 * Full CRUD functionality for interacting with a database.
@@ -9,7 +9,7 @@ This repository contains a FastAPI application for performing CRUD (Create, Read
 ## Clone the repository:
 
 ```bash
-git clone https://github.com/rajansahu713/FastAPI-Projects.git
+git clone https://github.com/devsheharyar/fastAPI_CURD.git
 ```
 Navigate to the CRUD Operation With SQLAlchemy directory:
 

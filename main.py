@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from schemas import ItemCreate, Item, ItemUpdate
@@ -7,7 +9,12 @@ from models import DBItem, Base
 from typing import List
 app = FastAPI()
 
-# Dependency to get the database session
+
+# Now we connect the tamplates folder to the main file for the views to rander.
+
+tamplates=Jinja2Templates(directory="tamplates")
+
+# Dependency to get the database session.
 def get_db():
     database = SessionLocal()
     try:
@@ -19,10 +26,15 @@ def get_db():
 @app.on_event("startup")
 async def startup():
     Base.metadata.create_all(bind=engine)
-
-@app.get("/")
-def root():
-    return "server is running"
+# This is our first route to display the user that the server is working 
+# ("/") means home route
+# response_class= HTMLResponse means the response will be in Html it can be in json as well
+# "root" is the function name for logic
+#
+@app.get("/",response_class=HTMLResponse)
+def root(request: Request):
+     # return "pakistan"
+     return tamplates.TemplateResponse(request=request,name="home.html")
 
 @app.get("/items")
 async def get_all_items(db: Session = Depends(get_db)) -> List[Item]:

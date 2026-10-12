@@ -7,7 +7,6 @@ from sqlalchemy.orm import Session
 from schemas import ItemCreate, Item, ItemUpdate
 from databases import SessionLocal, engine
 from models import DBItem, Base
-from typing import List
 app = FastAPI()
 
 
@@ -43,18 +42,19 @@ async def startup():
 # response_class= HTMLResponse means the response will be in Html it can be in json as well
 # "root" is the function name for logic
 #
-@app.get("/",response_class=HTMLResponse)
-def root(request: Request):
+@app.get("/")
+def root(request1: Request):
      # return "pakistan"
-     return tamplates.TemplateResponse(request=request,name="home.html")
+     return tamplates.TemplateResponse(request=request1,name="home.html")
 
-@app.get("/items")
-async def get_all_items(db: Session = Depends(get_db)) -> List[Item]:
-    db_items = db.query(DBItem)
-    result = []
-    for item in db_items:
-        result.append(Item(**item.__dict__))
-    return result
+@app.get("/allitems")
+async def get_all_items(request: Request, db: Session = Depends(get_db)):
+    db_items = db.query(DBItem).all()
+    return tamplates.TemplateResponse(
+        request=request,
+        name="allItems.html",
+        context={"db_items": db_items},
+    )
 
 @app.post("/items")
 def create_item(item: ItemCreate, db: Session = Depends(get_db)) -> Item:

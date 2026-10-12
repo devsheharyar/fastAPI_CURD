@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from schemas import ItemCreate, Item, ItemUpdate
@@ -13,6 +14,17 @@ app = FastAPI()
 # Now we connect the tamplates folder to the main file for the views to rander.
 
 tamplates=Jinja2Templates(directory="tamplates")
+
+# to add css in the fast api we should mount the staticFiles directory and place the css and images files in it.
+
+app.mount("/static", StaticFiles(directory="static"), name="static2")
+
+# • app.mount(...): This attaches an independent sub-application (powered by Starlette) to your main FastAPI app to handle a specific URL prefix.
+# • "/static": This is the URL path in the browser. Any request starting with http://your-domain/static/... will look inside this mounted directory.
+# • StaticFiles(...): This is the helper class imported from fastapi.staticfiles that handles reading and streaming files from your disk.
+# • directory="static": This is the actual folder name on your computer's hard drive (relative to where you run your Python command) where your files are stored.
+# • name="static": This is the internal identifier used by FastAPI. It allows you to generate dynamic URLs in your HTML templates using request.url_for("static", path="/style.css")
+
 
 # Dependency to get the database session.
 def get_db():

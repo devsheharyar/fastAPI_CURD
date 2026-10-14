@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="tamplates/style.css">
-     <!-- The follwing is the process of adding CSS file to the html file using the sataic folder -->
-     <link rel="stylesheet" href="{{ url_for('static2', path='/style.css') }}">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to the CURD operation</h1>
-    <a href="" class="button-link">Add Item</a>
-    <a href="/allitems" class="button-link">View all Items</a>
-    <a href="" class="button-link">Delete Item</a>
-    <a href="" class="button-link">Search Items by ID</a>
-    <a href="" class="button-link">Update Items by ID</a>
-</html>
+    {% extends "nav.html"%}
+    {% block content %}
+ <h1>Now you are at {{title}} page</h1>
+    {% endblock content %}

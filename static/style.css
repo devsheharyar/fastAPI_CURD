@@ -12,3 +12,13 @@
 .button-link:hover {
   background-color: #0056b3; /* Darker color on hover */
 }
+ .list {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4e5e44; /* Button color */
+  color: rgb(20, 20, 20); /* Text color */
+  text-decoration: none; /* Removes the underline */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold;
+  text-align: center;
+}

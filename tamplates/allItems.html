@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
     <title>All Items</title>
 </head>
 <body>
     <ul>
     {% for item in db_items %}
-        <li>{{ item.name }} — {{ item.description }}</li>
+        <li><h3 class="list">{{ item.name }} — {{ item.description }}<h3></li>
     {% else %}
         <li>No items found.</li>
     {% endfor %}

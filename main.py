@@ -16,7 +16,7 @@ tamplates=Jinja2Templates(directory="tamplates")
 
 # to add css in the fast api we should mount the staticFiles directory and place the css and images files in it.
 
-app.mount("/static", StaticFiles(directory="static"), name="static2")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # • app.mount(...): This attaches an independent sub-application (powered by Starlette) to your main FastAPI app to handle a specific URL prefix.
 # • "/static": This is the URL path in the browser. Any request starting with http://your-domain/static/... will look inside this mounted directory.
@@ -44,8 +44,8 @@ async def startup():
 #
 @app.get("/")
 def root(request1: Request):
-     # return "pakistan"
-     return tamplates.TemplateResponse(request=request1,name="home.html")
+     title="Home"
+     return tamplates.TemplateResponse(request=request1,name="home.html",context={"title":title})
 
 @app.get("/allitems")
 async def get_all_items(request: Request, db: Session = Depends(get_db)):
